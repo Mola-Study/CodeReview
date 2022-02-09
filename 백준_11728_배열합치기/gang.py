@@ -6,5 +6,4 @@ liB = list(map(int,input().split()))
 res = liA + liB
 res.sort()
 
-for i in res:
-    print(i,end=' ')
+print(*res)
