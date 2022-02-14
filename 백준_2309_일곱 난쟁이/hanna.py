@@ -25,3 +25,30 @@ list_.sort()
 # 출력
 for i in list_:
     print(i)
+
+
+### 투포인터로 풀어보기
+
+list_ = []
+for _ in range(9):
+    list_.append(int(input()))
+list_.sort()
+
+cha = sum(list_) - 100
+l = 0 # 포인터 첫번째 인덱스
+r = 8 # 포인터 마지막 인덱스
+# 양쪽에서 조여온다
+
+while l < r :
+    if list_[l] + list_[r] == cha: # 찾으면 값 빼고 탈출
+        list_.remove(list_[r])
+        list_.remove(list_[l])
+        break
+    elif list_[l] + list_[r] < cha: # 두 포인터 합이 cha보다 작으면 left 포인터를 오른쪽으로 한 칸 이동
+        l += 1
+    else: # 두 포인터의 합이 cha보다 크면 right 포인터를 왼쪽으로 한 칸 이동
+        r -= 1
+    if l > len(list_) or r < 0: # 만약 left가 리스트 길이보다 커지거나, right가 0보다 작아지면 값을 찾지 못한 것이므로 탈출
+        break
+
+print(list_)
