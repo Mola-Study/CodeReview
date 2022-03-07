@@ -1,9 +1,9 @@
-import sys
-
-N = int(sys.stdin.readline())
+N = int(input())
 lst = []
-for _ in range(N):
-    lst += [int(sys.stdin.readline())]
-
-print(min(lst)*N)
-# 틀림 어딜 놓쳤지.
+for i in range(N):
+    lst.append(int(input()))
+lst.sort(reverse=True)
+maxV = lst[0]
+for i in range(N):
+    maxV = max(maxV, lst[i]*(i+1))
+print(maxV)
