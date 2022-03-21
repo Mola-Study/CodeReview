@@ -34,6 +34,8 @@
 
 => 무조건 성장 속도로 정렬하기!
 
+
+
 '''
 
 n = int(input())
@@ -47,6 +49,7 @@ for i in range(n):
     
 check.sort(key = lambda x: x[1])
 
+print(check)
 total = 0
 for i in range(n):
     total += check[i][0] + check[i][1] * i

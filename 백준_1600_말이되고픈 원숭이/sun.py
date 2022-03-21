@@ -53,7 +53,7 @@ def bfs(x, y, cnt):
             que.popleft()
         
             
-            if x == n - 1 and y == m - 1 and cnt <= k:
+            if x == n - 1 and y == m - 1 : # and cnt <= k:
                 return d
             
             for i in range(2):
@@ -70,8 +70,8 @@ def bfs(x, y, cnt):
         
         d += 1
         
-    if not visited[n - 1][m - 1][cnt]:
-        return -1
+    # if not visited[n - 1][m - 1][cnt]:
+    return -1
 
 
 k = int(input())
@@ -79,3 +79,72 @@ m, n = map(int, input().split())
 v = [list(map(int, input().split())) for _ in range(n)]
 
 print(bfs(0, 0, 0))
+
+
+
+
+
+
+
+
+
+
+
+
+# 1차원 bfs
+
+
+def bfs(s):
+    que = deque()
+    visited = [False for i in range(n + 1)]
+
+    que.append(s)
+    visited[s] = True
+    
+    while len(que) > 0:
+        size = len(que)
+        
+        for _ in range(size):
+            cur = que[0]
+            que.popleft()
+
+            for nxt in v[cur]:
+                if visited[nxt]:
+                    continue
+
+                que.append(nxt)
+                visited[nxt]
+
+
+
+
+
+# 2차원
+
+
+dx = [0, 1, 0, -1]
+dy = [1, 0, -1, 0]
+
+def bfs(x, y):
+    que = deque()
+    visited = [[False for i in range(m)] for j in range(n)]
+
+    que.append([x, y])
+    visited[x][y] = True
+    while len(que) > 0:
+        size = len(que)
+        
+        for _ in range(size):
+            x = que[0][0]
+            y = que[0][1]
+            que.popleft()
+
+            for i in range(4):
+                nx = x + dx[i]
+                ny = y + dy[i]
+                
+                if not (0 <= nx < n and 0 <= ny < m) or visited[nx][ny] or arr[nx][ny] != '1':
+                    continue
+                
+                que.append([nx, ny])
+                visited[nx][ny] = True
