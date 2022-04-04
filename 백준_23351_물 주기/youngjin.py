@@ -13,6 +13,7 @@ d = 0
 while arr[n - 1] > d:
     for i in range(idx, idx + a):
         arr[i] += b
+        print(arr)
     idx = (idx + a) % n
 
     d += 1
