@@ -59,3 +59,49 @@
 # print(0)
 
 
+
+from collections import deque
+import sys
+
+def bfs(x, y, z):
+    que = deque()
+    visited = [[False for i in range(1510)] for j in range(1510)]
+    
+    que.append([x, y, z])
+    visited[x][y] = True
+    
+    while que:
+        size = len(que)
+        
+        for _ in range(size):
+            a, b, c = que.popleft()
+
+            if a == b and b == c:
+                return 1
+
+            # z값 구하려고 만들어준 total
+            total = a + b + c
+            for x, y in [(a, b), (b, c), (c, a)]:
+                z = total - x - y
+                
+                if x > y:
+                    x -= y
+                    y *= 2
+                    # 방문 확인 이 위치에서 해줘야 함
+                    if not visited[x][y]:
+                        visited[x][y] = True
+                        que.append([x, y, z])
+                    
+                if x < y:
+                    y -= x
+                    x *= 2
+                    if not visited[x][y]:
+                        visited[x][y] = True
+                        que.append([x, y, z])
+                
+    return 0
+
+
+a, b, c = map(int, input().split())
+
+print(bfs(a, b, c))
