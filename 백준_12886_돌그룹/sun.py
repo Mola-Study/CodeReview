@@ -59,6 +59,11 @@
 # print(0)
 
 
+'''
+기본 bfs에 세가지 경우 다 넣어서 확인해보기
+방문처리 위치 주의!
+
+'''
 
 from collections import deque
 import sys
