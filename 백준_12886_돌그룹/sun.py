@@ -59,19 +59,3 @@
 # print(0)
 
 
-# visited = [False for _ in range(3)]
-# que = deque()
-
-# # a, b, c
-# # [a, b]
-# # [a, c]
-# # [b, c]
-# # 넣어가지고
-# que.append([a, b])
-# que.append([a, c])
-# que.append([b, c])
-# visited[0] = True
-# while que:
-#     if '성목이 바보':
-#         break
-# print(que)
