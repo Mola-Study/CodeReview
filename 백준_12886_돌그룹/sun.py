@@ -46,7 +46,7 @@
 # for _ in range(100010):
 #     arr.sort()
 #     a, b, c = arr
-#     print(arr)
+
 
 #     if a == b == c:
 #         print(1)
@@ -81,7 +81,7 @@ def bfs(x, y, z):
         for _ in range(size):
             a, b, c = que.popleft()
 
-            if a == b and b == c:
+            if a == b == c:
                 return 1
 
             # z값 구하려고 만들어준 total
@@ -91,7 +91,7 @@ def bfs(x, y, z):
                 
                 if x > y:
                     x -= y
-                    y *= 2
+                    y *= 2 
                     # 방문 확인 이 위치에서 해줘야 함
                     if not visited[x][y]:
                         visited[x][y] = True

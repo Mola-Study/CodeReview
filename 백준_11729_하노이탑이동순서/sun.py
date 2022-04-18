@@ -3,7 +3,7 @@ cnt = 0
 def recur(n, s, e):
     global cnt
     # 임시로 옮길 장대 찾아주기
-    mid = 6 - s - e
+    mid = 6 - s - e 
 
     # 원판 하나씩 옮기니까 n == 1일 때 이동 횟수 카운트
     # 옮긴 위치 추가하기
@@ -22,6 +22,7 @@ def recur(n, s, e):
 n = int(input())
 
 ans = recur(n, 1, 3)
+
 print(cnt)
 for i in ans:
     print(*i)
