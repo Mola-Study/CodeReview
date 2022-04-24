@@ -1,40 +1,29 @@
-import sys
-from collections import deque
-# 시간초과, 6%
-
-
-def permutation(lst, k):                        # 원본 리스트와 출력개수 k를 전달받는다.
-    empty = deque()
+def permutation(lst, k):                    # 전달받은 리스트에서 k번만큼 뽑는다. (중복허용)
     def generate(chosen):
-        if len(chosen) > k:                     # 가지치기, 출력개수보다 chosen의 개수가 커지면 return한다.
+        if len(chosen) > k:                 # k 개 이상 뽑을 시 return한다.
             return
+        if len(chosen) == k:
+            for item in chosen:             # 출력조건에 맞게 출력한다.
+                print(item, end=" ")
+            print()
+            return
+        for i in range(len(lst)):           # 리스트를 순회하며 재귀를 돌린다.
 
-        if len(chosen) == k:                    # 선택한 숫자의 개수가 출력 개수와 일치할 때,
-            temp = deque()                           # 임시 리스트를 선언한다.(초기화한다.)
-            for i in range(len(chosen) - 1):    # chosen의 원소들이 오름차순으로 정렬되어 있지않다면 return한다.
-                if chosen[i] > chosen[i+1]:
-                    return
-            for i in range(len(chosen)):        # chosen의 원소들이 오름차순으로 정렬되어 있다면
-                temp.append(chosen[i])          # 해당 요소들을 temp에 담은 후
-            test_lst.append(temp)               # test_list(2차원 배열)에 더해준다.
-            return                              # return을 통해 빠져나간다.
+            if chosen and chosen[-1] <= lst[i]:# 비내림차순으로 chosen에 담아야 하기 때문에 고려한 조건. chosen에 들어있는 마지막 값과 새로 담을 값을 비교하여 새로 담을 값이 큰 경우만 고려한다.
+                chosen.append(lst[i])
+                generate(chosen)
+                chosen.pop()
+            elif not chosen:                # 처음 시작할 때 인덱스에러가 발생하므로 따로 고려했다.
+                chosen.append(lst[i])
+                generate(chosen)
+                chosen.pop()
+            else:
+                continue
 
-        for i in range(len(lst)):
-            chosen.append(lst[i])
-            generate(chosen)
-            chosen.pop()
 
-    generate(empty)
+    generate([])
 
-N, M = map(int, sys.stdin.readline().split())                # 숫자 개수 N과 출력 개수 M을 입력받는다.
-arr = sorted(list(map(int, sys.stdin.readline().split())))   # 숫자들을 오름차순으로 표현하기 위해 입력받은 후 정렬한다.
-test_lst = deque()
+N, M = map(int, input().split())
+arr = list(map(int, input().split()))
+arr = sorted(list(set(arr)))                    # 중복된 숫자를 제외하고 정렬시킨다.
 permutation(arr, M)
-test_lst = set(list(map(tuple, test_lst)))                   # 중복되는 수열을 여러번 출력하지 않기 위해 set을 통해 제거한다.
-test_lst = sorted(list(test_lst))                           # set을 사용하여서 순서가 엉망이므로 다시 정렬한다.
-# print(test_lst)
-for item in test_lst:                                       # 2차원 배열 내 수열들을 순서대로 출력한다.
-    res= list(item)
-    for i in res:
-        print(i, end=" ")
-    print()
