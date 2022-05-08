@@ -127,14 +127,15 @@
 #     for j in range(i + 1, m + 1):
 #         v.append(arr[i] + arr[j])
 
-# # print(v)
+
+
 # for a in v:
 #     que = deque()
 #     visited = [False for _ in range(10010)]
 #     total = 0
     
 #     que.append([a, total, 0])
-#     visited[]
+
     
 #     while que:
         
