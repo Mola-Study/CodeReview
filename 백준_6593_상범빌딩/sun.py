@@ -68,4 +68,4 @@ while 1:
                 if arr[k][i][j] == 'E':
                     ek, ex, ey = k, i, j
                     
-    print(bfs(sk, sx, sy))
+    print(bfs(sk, sx, sy)) 
